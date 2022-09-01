@@ -20,6 +20,8 @@ Our goal is to estimate the $\eta$-value for each person in the dataset.
 
 Because we have a large number of competitors, some of whom had very few matches, we used a [ridge] penalized maximum likelihood approach --- this can be thought as placing a gaussian prior on the distribution of $\eta$, where the variance of that prior is inversely related to the penalty parameter, and estimating using the posterior mode.
 
+More details for fitting this model can be found [here](https://github.com/nrs02004/Jiujitsu-ELO/blob/main/writeup/cond-logit.pdf)
+
 ## The ranking
 
 We begin by giving the top 20 competitors according to our "best" ranking: where a prior on $\eta$ was used with std deviation $\sigma \approx 0.4$. This choice was somewhat arbitrary (the ranking was relatively stable for sufficiently small $\sigma$). Ideally we would identify the optimal $\sigma$ by using some type of split-sample validation.
