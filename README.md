@@ -83,4 +83,4 @@ We first note that we have replicated participants with slightly different spell
 
 We see above that ranks vary with regularization. We will now look at if we vary the prior variance (or equivalently, the regularization parameter) more smoothly.
 
-![smoothly varying regularization](output/changes-in-ranking.pdf "description")
+![smoothly varying regularization](/output/changes-in-ranking.pdf "description")
