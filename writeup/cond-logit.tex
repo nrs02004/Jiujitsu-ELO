@@ -1,0 +1,135 @@
+%\documentclass[12pt]{article}
+\documentclass[useAMS,referee,usenatbib]{amsart}
+%\usepackage[left = 1.25in, right = 1.25in]{geometry}
+%\usepackage[dvipsnames]{xcolor}
+
+%\usepackage{natbib}
+
+\usepackage{amscd,amssymb,amsmath,mathrsfs,amsfonts,graphicx,verbatim,epsfig,
+psfrag, float, fancybox} % Typical maths resource packages
+%\usepackage{graphics}                 % Packages to allow inclusion of graphics
+%\usepackage{color}                    % For creating coloured text and background
+%\usepackage{hyperref}                 % For creating hyperlinks in cross references
+%\usepackage[TS1,OT1,T1]{fontenc}
+
+\usepackage{amsmath}    % need for subequations
+%\usepackage{amscd,amssymb,mathrsfs,amsfonts}
+%\usepackage{graphicx}   % need for figures
+%\usepackage{verbatim}   % useful for program listings
+\usepackage{color}      % use if color is used in tex\documentclass[10pt]{article}
+\usepackage{verbatim}
+%\usepackage{setspace}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+
+%\usepackage{authblk}
+%\renewcommand\Authands{ and }
+
+\newcommand*{\asympdist}{\mathrel{\vcenter{\offinterlineskip
+\hbox{$\sim$}\vskip-.2ex\hbox{\hskip.55ex$\cdot$}}}}
+
+\newcommand*{\m}{\boldsymbol{\mu}}
+\newcommand*{\thet}{\boldsymbol{\Theta}}
+
+\newcommand*{\bb}{\beta\beta}
+\newcommand*{\hbb}{\widehat{\beta\beta}}
+
+\newcommand{\Keywords}[1]{\par\noindent
+{\small{\em Keywords\/}: #1}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{proof}[theorem]{Proof}
+
+%\setlength{\textwidth}{6in}
+
+%\newenvironment{proof}[1][Proof]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+%\newenvironment{definition}[1][Definition]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+%\newenvironment{example}[1][Example]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+%\newenvironment{remark}[1][Remark]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+%\newcommand{\qed}{\nobreak \ifvmode \relax \else
+%      \ifdim\lastskip<1.5em \hskip-\lastskip
+%      \hskip1.5em plus0em minus0.5em \fi \nobreak
+%      \vrule height0.75em width0.5em depth0.25em\fi}
+
+
+\newcommand{\ehash}[1]{\ensuremath{\mathfrak{H}^{#1}}}%\tilde{h}_{#1}}}
+\newcommand{\eD}{\ensuremath{\tilde{D}_S}}
+\newcommand{\eDD}[1]{\ensuremath{\tilde{D}_{S{#1}}}}
+\newcommand{\hashk}{\mathcal{k}}
+\newcommand{\hashbeta}{\tilde{\beta}}
+\newcommand{\hashepsilon}{\tilde{\epsilon}}
+
+
+\newcommand*{\Tpp}{T^{(\pi,\pi)}}
+\newcommand*{\Tph}{T^{(\pi,\hat{\pi})}}
+\newcommand*{\Thh}{T^{(\hat{\pi},\hat{\pi})}}
+\newcommand*{\hpi}{\hat{\pi}}
+\newcommand*{\Ap}{A^{(\pi)}}
+\newcommand*{\Ah}{A^{(\hat{\pi})}}
+
+
+\pdfminorversion=4
+
+\title{Conditional Logistic Regression for BJJ/MMA}
+
+\author{Noah Simon}
+
+\begin{document}
+
+\label{firstpage}
+
+\maketitle
+
+\section{Conditional Logit}\label{sec:intro}
+Suppose competitors are numbered $j=1,\ldots, m$; and we observe $n$ bouts between pairs of competitors. Consider modeling 
+\[
+p\left(\textrm{winner} = j \middle| \textrm{ competitors are } j,k\right) \equiv p_{j,k}(j) = \frac{e^{\eta_j}}{e^{\eta_j}+e^{\eta_k}}
+\]
+In this case our likelihood is
+\[
+L\left({\bf \eta}\right) = \prod_{i=1}^n \left(\frac{e^{\eta_{j(i,w)}}}{e^{\eta_{j(i,w)}} + e^{\eta_{j(i,l)}}}\right)
+\]
+where the indices of the two competitors in match $i$ are $j(i,w)$ the winner, and $j(i,l)$ the loser (in this pair-of-competitor setup there is an equivalent logistic regression). The log-likelihood is now
+\[
+\ell\left({\bf \eta}\right) = \sum_{i=1}^n\left[\eta_{j(i,w)} - \operatorname{log}\left(e^{\eta_{j(i,w)}} + e^{\eta_{j(i,l)}}\right)\right]
+\]
+We regularize this and solve
+\[
+\hat{\eta}\gets \operatorname{argmin}-\ell(\eta) + \lambda\|\eta\|_2^2.
+\]
+Regularization turns out to be \emph{very} important here, as otherwise we end up with complete separation for some small subset of competitors with almost no matches. Calculating the gradient gives
+\[
+\frac{\partial}{\partial \eta_k}\ell\left({\bf \eta}\right) = \sum_{i\in Win_k}\left[1 -  \left(\frac{e^{\eta_{j(i,w)}}}{e^{\eta_{j(i,w)}} + e^{\eta_{j(i,l)}}}\right)\right] + \sum_{i\in Lose_k}\left[-\left(\frac{e^{\eta_{j(i,l)}}}{e^{\eta_{j(i,w)}} + e^{\eta_{j(i,l)}}}\right) \right] 
+\]
+This can be calculated efficiently by\\
+
+\hline
+\begin{enumerate}
+\item Set $g_j \gets 0$ for $j = 1,\ldots, m$ (where $m$ is total number of teams)\\
+
+\item Calculate
+\[
+p_i\gets p\left(\textrm{winner} = j(i,w) \middle| \textrm{ competitors are } j(i,w),j(i,l)\right) = \frac{e^{\eta_{j(i,w)}}}{e^{\eta_{j(i,w)}} + e^{\eta_{j(i,l)}}}
+\]
+for each $i=1,\ldots,n$\\
+
+\item for $i=1,\ldots,n$ update $g_{j(i,w)}$ and $g_{j(i,l)}$ by
+\begin{align*}
+g_{j(i,w)} &+= 1 - p_i\\
+g_{j(i,l)} &+= p_i - 1
+\end{align*}
+\end{enumerate}
+\hline
+.\\
+
+and we can use gradient descent to find the minimizer.  This idea can also be extended in neat ways to modeling win-probabilities via low rank matrix completion.
+
+\end{document}
