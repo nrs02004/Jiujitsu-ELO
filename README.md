@@ -78,3 +78,9 @@ We also consider the ranks given by the nearly unpenalized model (or equivalentl
 |   20|Andre Galvao       | 5.68|
 
 We first note that we have replicated participants with slightly different spellings of their names (eg. "V.Honorio" vs "Victor Honorio"). This only seems to be a problem for the competitors generally considered to be less prominent. Ideally we would fix this though. We also have some odd people in this top list (perhaps as much as 50\% of the list are names unknown to most jiujitsu practicioners). This issue is due to having some fighters who have never really competed at the top level (or have only very few matches there), but have performed very well in their generally quite small subset of matches against largely non-professionals. While these competitors are potentially of interest, they should likely not make the top of the list without additional evidence.
+
+## Ranks varying with regularization
+
+We see above that ranks vary with regularization. We will now look at if we vary the prior variance (or equivalently, the regularization parameter) more smoothly.
+
+![smoothly varying regularization](output/changes-in-ranking.pdf "description")
