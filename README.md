@@ -1,14 +1,8 @@
 # Jiujitsu-ELO
 
-I want to know who the top jiujitsu competitor of all time (as of 2016) was! In addition, I want to identify a list of the top 20 competitors (who wouldn't want to do this?).
+I want to know who the top jiujitsu competitor of all time is (as of 2016)! In addition, I want to identify a list of the top 20 competitors (who wouldn't want to do this?).
 
-Toward that end, I used data on 
-
-
-
-In this project, I...
-1) Develop R code for fitting a penalized conditional logistic regression model
-2) Apply this model to Brazilian Jiujitsu (BJJ) competition data (through 2016) to identify rankings for competitors
+Toward that end, I used a dataset that contained $\sim 9000$ matches between a total of $\sim 2400$ unique competitors. I fit a bespoke penalized conditional logistic regression model to this data to obtain an "ELO" rating for each competitor, giving a ranking of all competitors in the dataset.
 
 The algorithm for fitting the penalized conditional logistic regression model maximizes the penalized log-likelihood (a ridge penalty is included). This maximization is done via gradient ascent. The code includes components written in R and C++
 
@@ -28,7 +22,7 @@ Because we have a large number of competitors, some of whom had very few matches
 
 ## The ranking
 
-We begin by giving the top 20 competitors according to our "best" ranking: where a prior on $\eta$ was used with std deviation $\sigma \approx 0.4$. This choice was somewhat arbitrary (the ranking was relatively stable for sufficiently small $\sigma$). Ideally we would identify the optimal $\sigma$ by using some type of split sample validation.
+We begin by giving the top 20 competitors according to our "best" ranking: where a prior on $\eta$ was used with std deviation $\sigma \approx 0.4$. This choice was somewhat arbitrary (the ranking was relatively stable for sufficiently small $\sigma$). Ideally we would identify the optimal $\sigma$ by using some type of split-sample validation.
 
 | rank|competitor        |  eta|
 |----:|:-----------------|----:|
