@@ -11,7 +11,7 @@ The algorithm for fitting the penalized conditional logistic regression model ma
 We assume that each person has a skill value $\eta$; when 2 people ($i$ and $j$) compete, we model the outcome as a coin flip with probability of person $i$ winning as
 
 $$
-P(i\textrm{ wins}) = \frac{e^{\eta_i}}{e^{\eta_i} + e^{\eta_j}}
+P(i\textrm{ wins} | \textrm{$i$ and $j$ compete}) = \frac{e^{\eta_i}}{e^{\eta_i} + e^{\eta_j}}
 $$
 
 This is a vast simplification as it ignores that "skill" is time-varying; and that certain people may have styles that work better against some people than others (this would necessitate a low rank model). It also ignores that jiujitsu competitors are separated into weight classes, and there is relatively little competition across weight classes (so possibly we should have run a stratified analysis). However, this can still be useful for roughly ranking competitors.
