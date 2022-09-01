@@ -1,3 +1,9 @@
+## This is the main script to run to recreate the analysis
+## It first pulls in the "solver" and the data;
+### then reformats the data a bit;
+### then applies the solver for a sequence of penalty-parameter values
+
+
 source("clogit-solver.r")
 data <- readRDS("../data/BJJ_top_bouts.Rds")
 
@@ -45,5 +51,5 @@ for(i in 1:length(lambdas)){
   fits[[i]]$eta <- eta.ord
 }
 
-## Generate the ouput
+## Generate the output (you might want to run through this script line-by-line)
 source("output-gen.r")

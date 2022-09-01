@@ -1,3 +1,7 @@
+## This is a set of functions that can be used to fit our penalized conditional logistic regression model
+## This should probably be improved to have some convergence criteria; step-size optimization; solve for a sequence of lambda-values and potentially use warm starts
+
+
 library(inline)
 library(Rcpp)
 
