@@ -49,7 +49,7 @@ We begin by giving the top 20 competitors according to our "best" ranking: where
 |   19|Lucas Lepri       | 1.24|
 |   20|Claudio Calasans  | 1.24|
 
-This ranking seems, at least, reasonable. It is hard to compare across weight classes, but it is encouraging to see Rafael Mendes, Cobrinha (Rubens Charles), and Marcelo Garcia near the top of this list. It is also no surprise to see Rodolfo Vieira, Buchecha (Marcus Almeida), Leandro Lo, and Roger Gracie taking 4 of those 5 top spots. As an aside, we can see a potential issue with the model straight away: It predicts that Rodolfo Vieira and Marcus Almeida should have an equal chance of winning, when in fact Rodolfo's record there was 1 win and 5 losses. This may be a particularly poor matchup for Rodolfo despite his skill (though a simple size of 6 obviously is no more than vaguely suggestive).
+This ranking seems, at least, reasonable. It is hard to compare across weight classes, but it is encouraging to see Rafael Mendes, Cobrinha (Rubens Charles), and Marcelo Garcia near the top of this list. It is also no surprise to see Rodolfo Vieira, Buchecha (Marcus Almeida), Leandro Lo, and Roger Gracie taking 4 of those 5 top spots. As an aside, we can see a potential issue with the model straight away: It predicts that Rodolfo Vieira and Marcus Almeida should have an equal chance of winning when competing against eachother, when in fact Rodolfo's record against Buchecha was 1 win and 5 losses. This may be a particularly poor matchup for Rodolfo despite his skill (though a simple size of 6 obviously is no more than vaguely suggestive).
 
 
 We also consider the ranks given by the nearly unpenalized model (or equivalently using an improper prior). We get the following ranking (of the top 20 competitors)
