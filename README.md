@@ -22,12 +22,35 @@ Because we have a large number of competitors, some of whom had very few matches
 
 ## The ranking
 
-We begin by giving the ranking when
+We begin by giving the top 20 fighters where a prior on $\eta$ was used with std deviation $\sigma \approx 0.4$. This choice was somewhat arbitrary (the ranking was relatively stable for sufficiently small $\sigma$). Ideally we would identify the optimal $\sigma$ by using some type of split sample validation.
+
+| rank|competitor        |  eta|
+|----:|:-----------------|----:|
+|    1|Rodolfo Vieira    | 2.34|
+|    2|Marcus Almeida    | 2.32|
+|    3|Rafael Mendes     | 2.13|
+|    4|Leandro Lo        | 2.13|
+|    5|Roger Gracie      | 2.05|
+|    6|Andre Galvao      | 1.83|
+|    7|Rubens Charles    | 1.72|
+|    8|Felipe Pena       | 1.71|
+|    9|Alexandre Ribeiro | 1.69|
+|   10|Bernardo Faria    | 1.62|
+|   11|Marcelo Garcia    | 1.61|
+|   12|Keenan Cornelius  | 1.58|
+|   13|Ronaldo Souza     | 1.52|
+|   14|Paulo Miyao       | 1.48|
+|   15|Michael Langhi    | 1.41|
+|   16|Braulio Estima    | 1.33|
+|   17|Yuri Simoes       | 1.26|
+|   18|Joao Miyao        | 1.25|
+|   19|Lucas Lepri       | 1.24|
+|   20|Claudio Calasans  | 1.24|
+
+This ranking seems, at least, reasonable. It is hard to compare across weight classes, but it is encouraging to see Rafael Mendes, Cobrinha (Rubens Charles), and Marcelo Garcia near the top of this list. It is also no surprise to see Rodolfo Vieira, Buchecha (Marcus Almeida), Leandro Lo, and Roger Gracie taking 4 of those 5 top spots. As an aside, we can see a potential issue with the model straight away: It predicts that Rodolfo Vieira and Marcus Almeida should have an equal chance of winning, when in fact Rodolfo's record there was 1 win and 5 losses. This may be a particularly poor matchup for Rodolfo despite his skill (though a simple size of 6 obviously is no more than vaguely suggestive).
 
 
-
-
-For the unpenalized model (or equivalently using an improper prior), we get the following ranking (of the top 20 competitors)
+We also consider the ranks given by the nearly unpenalized model (or equivalently using an improper prior). We get the following ranking (of the top 20 competitors)
 
 | rank|competitor         |  eta|
 |----:|:------------------|----:|
@@ -52,4 +75,4 @@ For the unpenalized model (or equivalently using an improper prior), we get the 
 |   19|Abdurahman Bilarov | 5.79|
 |   20|Andre Galvao       | 5.68|
 
-We first note that we have replicated participants with slightly different spellings of their names (eg. "V.Honorio" vs "Victor Honorio"). Ideally we woudl fix this. We also have some odd people in this top list (perhaps as much as 50\% of the list are names unknown to most jiujitsu practicioners)
+We first note that we have replicated participants with slightly different spellings of their names (eg. "V.Honorio" vs "Victor Honorio"). This only seems to be a problem for the competitors generally considered to be less prominent. Ideally we would fix this though. We also have some odd people in this top list (perhaps as much as 50\% of the list are names unknown to most jiujitsu practicioners). This issue is due to having some fighters who have never really competed at the top level (or have only very few matches there), but have performed very well in their generally quite small subset of matches against largely non-professionals. While these competitors are potentially of interest, they should likely not make the top of the list without additional evidence.
