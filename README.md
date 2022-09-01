@@ -81,6 +81,8 @@ We first note that we have replicated participants with slightly different spell
 
 ## Ranks varying with regularization
 
-We see above that ranks vary with regularization. We will now look at if we vary the prior variance (or equivalently, the regularization parameter) more smoothly.
+We see above that ranks vary with regularization. We will now look at if we vary the prior variance (or equivalently, the regularization parameter) more smoothly. In the following plot, we have fit 50 models with regularization parameters ranging from almost zero (on the very left) to quite large (on the very right) --- the x-axis is the log of the regularization parameter. This can also be framed in terms of prior variance (huge on the left, small on the right). Each of the lines on the plot represents the estimated ELO of a competitor across our fitted models/regularization parameters. We only included a small subset of the full 2400 competitors: Those that were ranked in the top 10 by one of our 50 fitted models.
 
-<img src="/output/changes-in-ranking.png" alt="drawing" width="1000"/>
+<img src="/output/changes-in-ranking.png" alt="drawing" width="600"/>
+
+We note 2 primary things: 1) As regularization increases, the separation between the best and worst competitor decreases (our $\eta$-values are shrunken toward $0$). In addition, many of the most highly ranked competitors in the essentially unregularized  model (on the left), are given much less impressive rankings after regularization. This mirrors what we saw in the tables above, where many of the highly ranked competitors from the unregularized model were primarily there because they had not really engaged much if at all at the highest level of competition.
