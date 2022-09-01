@@ -1,15 +1,11 @@
 library(tidyr)
 library(dplyr)
 library(colorspace)
+library(knitr)
 
 fitted.vals <- data.frame(name = key$name)
 for(i in 1:length(fits)){
   fitted.vals <- fitted.vals %>% mutate("eta.{i}" := fits[[i]]$full.obj$eta[key[["id"]]])
-}
-
-plot(0,0, type = "n", xlim = c(0,52), ylim = c(-10,10))
-for(i in 1:nrow(fitted.vals)){
-  lines(1:51,fitted.vals[i,-1])
 }
 
 top.people <- c()
@@ -32,5 +28,11 @@ for(i in 1:nrow(dat.plot)){
   etas_i <- dat.plot %>% select(-name, -ranks) %>% slice(i)
   lines(log(0.001+lambdas),etas_i, col = adjust_transparency(spectrum[dat.plot$ranks[i]], 0.7), lwd = 3)
 }
+
+num.use <- 20
+table.dat <- data.frame( rank=1:num.use, competitor = fits[[1]]$ranks[1:num.use], eta = round(fits[[1]]$eta[1:num.use],2))
+
+kable(table.dat)
+
 
 
