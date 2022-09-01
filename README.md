@@ -22,7 +22,7 @@ Because we have a large number of competitors, some of whom had very few matches
 
 ## The ranking
 
-We begin by giving the top 20 fighters where a prior on $\eta$ was used with std deviation $\sigma \approx 0.4$. This choice was somewhat arbitrary (the ranking was relatively stable for sufficiently small $\sigma$). Ideally we would identify the optimal $\sigma$ by using some type of split sample validation.
+We begin by giving the top 20 competitors according to our "best" ranking: where a prior on $\eta$ was used with std deviation $\sigma \approx 0.4$. This choice was somewhat arbitrary (the ranking was relatively stable for sufficiently small $\sigma$). Ideally we would identify the optimal $\sigma$ by using some type of split sample validation.
 
 | rank|competitor        |  eta|
 |----:|:-----------------|----:|
