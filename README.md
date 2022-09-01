@@ -1,5 +1,11 @@
 # Jiujitsu-ELO
 
+I want to know who the top jiujitsu competitor of all time (as of 2016) was! In addition, I want to identify a list of the top 20 competitors (who wouldn't want to do this?).
+
+Toward that end, I used data on 
+
+
+
 In this project, I...
 1) Develop R code for fitting a penalized conditional logistic regression model
 2) Apply this model to Brazilian Jiujitsu (BJJ) competition data (through 2016) to identify rankings for competitors
