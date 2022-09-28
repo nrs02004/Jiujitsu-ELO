@@ -1,5 +1,7 @@
 # Jiujitsu-ELO
 
+Jiujitsu is a 2-player competitive sport (or martial art), with a relatively standardized competition ruleset. 
+
 I want to know who the top jiujitsu competitor of all time is (as of 2016)! In addition, I want to identify a list of the top 20 competitors (who wouldn't want to do this?).
 
 Toward that end, I used a dataset that contained $\sim 9000$ matches between a total of $\sim 2400$ unique competitors. I fit a bespoke penalized conditional logistic regression model to this data to obtain an "ELO" rating for each competitor, giving a ranking of all competitors in the dataset.
